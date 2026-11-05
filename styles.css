@@ -9,12 +9,22 @@
   --line: #d5dae5;    /* borders */
   --card: #ffffff;    /* card background */
   --onnavy: #f3f5f9;  /* text on navy */
+  --fieldline: #7d8bb0; /* form field borders on navy (4:1 contrast, so the boxes are easy to see) */
   --display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
   --body: "Source Serif 4", Georgia, serif;
   --ui: "Barlow", "Helvetica Neue", Arial, sans-serif;
 }
 
 * { box-sizing: border-box; }
+
+/* Keyboard focus: a thick outline on whatever has focus. Dark on light areas, light on navy areas. */
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.hero :focus-visible, .contact :focus-visible { outline-color: var(--onnavy); }
+main:focus { outline: none; }
+
+/* "Skip to main content" link: hidden until a keyboard user presses Tab */
+.skip { position: absolute; left: 8px; top: -100px; z-index: 10; background: var(--navy); color: var(--onnavy); font: 600 15px/1 var(--ui); padding: 12px 16px; border-radius: 3px; text-decoration: none; }
+.skip:focus { top: 8px; }
 body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--body); }
 img { max-width: 100%; }
 .wrap { max-width: 1080px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
@@ -46,7 +56,6 @@ h1 { font: 800 clamp(56px, 11vw, 120px)/.9 var(--display); text-transform: upper
 .btn { font: 600 16px/1 var(--ui); padding: 14px 22px; border-radius: 3px; border: 0; cursor: pointer; text-decoration: none; display: inline-block; }
 .btn.primary { background: var(--red); color: #fff; }
 .btn.ghost { border: 2px solid #fff; color: #fff; }
-.btn:focus-visible { outline: 3px solid #f0a3a9; outline-offset: 2px; }
 
 /* Sections */
 section { padding-block: 56px; }
@@ -85,7 +94,7 @@ h2 { font: 800 clamp(32px, 5vw, 48px)/1 var(--display); text-transform: uppercas
 .contact .lede { color: #d7ddea; }
 form { display: grid; gap: 12px; max-width: 520px; }
 label { font: 600 14px/1 var(--ui); display: grid; gap: 6px; }
-input, textarea { font: 16px var(--ui); padding: 12px; border: 1px solid #3b4a72; border-radius: 3px; background: #0f1830; color: #fff; }
+input, textarea { font: 16px var(--ui); padding: 12px; border: 1px solid var(--fieldline); border-radius: 3px; background: #0f1830; color: #fff; }
 
 footer { font: 500 14px/1.4 var(--ui); color: var(--muted); padding-block: 24px; border-top: 1px solid var(--line); }
 
