@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PAD Combined Drafts</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500;700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+/* Layout: a short brief (what Isaac picked), then the five drafts as large preview cards, then what is still open. */
+:root{--bg:#f6f6f2;--card:#ffffff;--fg:#14203f;--muted:#55607a;--line:#dcdfe7;--accent:#b31942;--chip:#e9ecf3;
+ --disp:"Libre Franklin","Helvetica Neue",Arial,sans-serif;--body:"Source Serif 4",Georgia,serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1222;--card:#141b30;--fg:#e9ecf5;--muted:#a3adc6;--line:#28314a;--accent:#ff6b84;--chip:#1d2640;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1222;--card:#141b30;--fg:#e9ecf5;--muted:#a3adc6;--line:#28314a;--accent:#ff6b84;--chip:#1d2640;color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{background:var(--bg);color:var(--fg);font:400 17px/1.6 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 72px}
+.wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+h1,h2,h3{font-family:var(--disp);margin:0;text-wrap:balance;line-height:1.08}
+h1{font-size:clamp(34px,5.4vw,56px);font-weight:900;letter-spacing:-.02em}
+h2{font-size:22px;font-weight:900}
+p{margin:0}
+.eyebrow{font:700 12px/1 var(--disp);letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.intro p.lede{margin-top:16px;max-width:62ch;color:var(--muted);font-size:18px}
+.heard{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;list-style:none;margin:22px 0 0;padding:0}
+.heard li{background:var(--card);border:1px solid var(--line);padding:12px 14px;font-size:15px;line-height:1.45}
+.heard b{display:block;font:700 12px/1.3 var(--disp);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.drafts{display:flex;flex-direction:column;gap:28px}
+.d{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);background:var(--card);border:1px solid var(--line)}
+.d a.shot{display:block;position:relative;overflow:hidden;border-right:1px solid var(--line)}
+.d a.shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;aspect-ratio:16/10;max-width:100%;transition:transform .5s}
+.d a.shot:hover img{transform:scale(1.02)}
+.d .t{padding:24px 26px;display:flex;flex-direction:column;gap:12px}
+.d .num{font:900 13px/1 var(--disp);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.d h3{font-size:clamp(24px,3vw,32px);font-weight:900}
+.from{display:flex;flex-wrap:wrap;gap:6px}
+.from span{background:var(--chip);font:600 12px/1 var(--disp);padding:6px 8px}
+.d p{color:var(--muted);font-size:16px}
+.d .best{color:var(--fg);font-size:15px}
+.open{align-self:flex-start;margin-top:auto;font:700 15px/1 var(--disp);color:var(--fg);text-decoration:none;border-bottom:2px solid var(--accent);padding:10px 0 4px}
+.open:hover{color:var(--accent)}
+.open:focus-visible,.shot:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.todo h2{margin-bottom:14px}
+.todo ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;max-width:72ch}
+.todo li::marker{color:var(--accent)}
+.note{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}
+@media (max-width:760px){.d{grid-template-columns:1fr}.d a.shot{border-right:0;border-bottom:1px solid var(--line)}}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <p class="eyebrow">Patriot Animal Defense · website round 4</p>
+    <h1>Five drafts that combine what you picked</h1>
+    <p class="lede">Isaac, these are built from our October 27 call. Each one is a full homepage on one continuous scrolling page, using the text from your draft doc. Open each on your laptop and your phone. Tell me which one is closest, and what to borrow from the others.</p>
+    <ul class="heard">
+      <li><b>Scrolling</b>One continuous page, with sections that appear as you scroll down.</li>
+      <li><b>Flag</b>A realistic waving American flag. The earlier drawn one looked off.</li>
+      <li><b>Liked</b>#9 photo wall, #11 gradient scroll, #15 centered spotlight hero, #21 moving background, #23 stars.</li>
+      <li><b>Contact</b>Small and simple at the bottom, on black. The big contact sections are gone.</li>
+      <li><b>Logo</b>Your logo from October 28 is in the top corner and the footer of every draft.</li>
+      <li><b>Principles</b>Just the four names, no numbers, each on dark blue with one photo.</li>
+    </ul>
+  </header>
+
+  <section class="drafts" aria-label="Drafts">
+    <article class="d">
+      <a class="shot" href="d1.html" aria-label="Open draft 1, Spotlight Wall"><img src="thumb-d1.jpg" alt="Draft 1: centered DEFENSE NOW headline in a pool of light over a dark waving flag"></a>
+      <div class="t"><p class="num">Draft 1</p><h3>Spotlight Wall</h3>
+        <div class="from"><span>#15 Spotlight</span><span>#9 Photo Wall</span></div>
+        <p>The centered spotlight hero you liked, without the moving cursor light. Below it, each principle is a full-width photo under a navy wash, with the name set large.</p>
+        <p class="best">Closest to what you pointed at on the call.</p>
+        <a class="open" href="d1.html">Open draft 1</a></div>
+    </article>
+    <article class="d">
+      <a class="shot" href="d2.html" aria-label="Open draft 2, Gradient Scroll"><img src="thumb-d2.jpg" alt="Draft 2: wide DEFENSE NOW headline over the flag with a navy and red gradient, progress dots on the right"></a>
+      <div class="t"><p class="num">Draft 2</p><h3>Gradient Scroll</h3>
+        <div class="from"><span>#11 One per screen</span><span>#9 Photo Wall</span></div>
+        <p>One statement per screen, with a slow navy-to-red gradient drifting over the flag and photos. The page settles gently on each section, and dots on the side show where you are.</p>
+        <p class="best">Smoothest to scroll on a phone.</p>
+        <a class="open" href="d2.html">Open draft 2</a></div>
+    </article>
+    <article class="d">
+      <a class="shot" href="d3.html" aria-label="Open draft 3, Dusk Parallax"><img src="thumb-d3.jpg" alt="Draft 3: stencil DEFENSE NOW headline with the flag in a diagonal slash across a dusk sky"></a>
+      <div class="t"><p class="num">Draft 3</p><h3>Dusk Parallax</h3>
+        <div class="from"><span>#21 Diagonal Dusk</span><span>#9 Photo Wall</span></div>
+        <p>The background moves while you scroll. Stars drift at different speeds, the flag slash widens, and the photos slide inside their slanted frames. Sections meet on diagonal cuts.</p>
+        <p class="best">The most movement, for students.</p>
+        <a class="open" href="d3.html">Open draft 3</a></div>
+    </article>
+    <article class="d">
+      <a class="shot" href="d4.html" aria-label="Open draft 4, Night Rally"><img src="thumb-d4.jpg" alt="Draft 4: glowing DEFENSE NOW headline on a dark stage with searchlights and footlights over the flag"></a>
+      <div class="t"><p class="num">Draft 4</p><h3>Night Rally</h3>
+        <div class="from"><span>#23 Night Rally</span><span>#15 centered hero</span></div>
+        <p>An evening rally stage, with searchlights sweeping over the flag. "Conservative values, applied" sits on the twinkling star field you liked. Each principle lights up as it reaches the middle of the screen.</p>
+        <p class="best">The most dramatic, good for events.</p>
+        <a class="open" href="d4.html">Open draft 4</a></div>
+    </article>
+    <article class="d">
+      <a class="shot" href="d5.html" aria-label="Open draft 5, Clean Photo Wall"><img src="thumb-d5.jpg" alt="Draft 5: light page with a navy DEFENSE NOW panel beside a large realistic waving flag"></a>
+      <div class="t"><p class="num">Draft 5</p><h3>Clean Photo Wall</h3>
+        <div class="from"><span>#9 Photo Wall</span><span>Calmer take</span></div>
+        <p>The quieter version. It shows the flag large and clear, with white and navy sections and the photo wall as framed bands. The buttons are understated, since you weren't sure about the bold ones.</p>
+        <p class="best">Reads best to DC staff.</p>
+        <a class="open" href="d5.html">Open draft 5</a></div>
+    </article>
+  </section>
+
+  <section class="todo" aria-labelledby="open">
+    <h2 id="open">Still open before launch</h2>
+    <ul>
+            <li><b>Flag video:</b> the flag in these drafts is drawn in code as a stand-in. Pick a real clip you like (Mixkit or Pexels, searching "american flag waving", close up, 5 to 15 seconds), and add it to your chosen draft in Claude Code. Each draft already has a spot for it.</li>
+      <li><b>Contact:</b> a form, an email address, or both? And which address?</li>
+      <li><b>Your text:</b> the fellowship line on About, your arguments for each principle, and whether to include the "risks to everyone" section.</li>
+      <li><b>Sources:</b> a source for every factual claim before launch.</li>
+      <li><b>Photos:</b> the current photos are small, so they look soft at full width. Larger versions of the same photos would sharpen every draft.</li>
+    </ul>
+    <p class="note">Gray dashed boxes inside the drafts mark text you still need to write. Nothing has been filled in for you.</p>
+  </section>
+</div>
+
+</html>
