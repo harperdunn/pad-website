@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PAD Draft 2: Gradient Scroll</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,600..900&family=Figtree:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Layout: one statement per screen (#11), gentle snapping, a slow navy-to-red gradient drifting over the flag and photos, progress dots on the side. */
+:root{--navy:#0c1c4d;--deep:#070f2b;--red:#b5122f;--glow:#ff5c74;--paper:#f3f4f8;
+ --disp:"Anybody","Arial Black",sans-serif;--body:"Figtree",system-ui,sans-serif;color-scheme:dark}
+html{scroll-snap-type:y proximity}
+body{background:var(--deep);color:#fff;font:400 17px/1.6 var(--body)}
+.x{font-family:var(--disp);font-weight:900;font-stretch:104%;text-transform:uppercase;line-height:.95;letter-spacing:-.01em}
+.lbl{font:700 12px/1 var(--body);letter-spacing:.3em;text-transform:uppercase;color:#ffc2cc}
+
+.scr{position:relative;isolation:isolate;overflow:hidden;min-height:92svh;display:flex;flex-direction:column;justify-content:center;gap:22px;padding-block:96px;scroll-snap-align:start}
+.grad{position:absolute;inset:0;z-index:-1;background:linear-gradient(120deg,rgba(7,15,43,.94),rgba(12,28,77,.78) 40%,rgba(181,18,47,.62) 75%,rgba(7,15,43,.9));background-size:260% 260%}
+@media (prefers-reduced-motion:no-preference){.grad{animation:drift 22s ease-in-out infinite alternate}}
+@keyframes drift{from{background-position:0% 30%}to{background-position:100% 70%}}
+
+nav.top{position:absolute;z-index:5;inset:0 0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:6px 24px;padding-block:20px}
+nav.top .brand{margin-right:auto;font:900 24px/1 var(--disp);font-stretch:150%;text-decoration:none;letter-spacing:.04em}
+nav.top a:not(.brand){font:700 13px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;opacity:.85}
+nav.top a:not(.brand):hover{opacity:1}
+
+.hero h1{font-size:clamp(50px,8.4vw,128px)}
+.hero .sub{font:700 clamp(16px,1.8vw,19px)/1.2 var(--body);letter-spacing:.32em;text-transform:uppercase}
+.hero .vision{max-width:44ch;font-size:clamp(17px,2vw,21px);color:#e7ebf6}
+.cue{display:inline-flex;gap:12px;align-items:center;font:700 14px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;align-self:flex-start;margin-top:10px}
+.cue::after{content:"";width:34px;height:34px;border-radius:50%;border:2px solid #fff;background:radial-gradient(circle at 50% 42%,#fff 0 3px,transparent 3.5px)}
+@media (prefers-reduced-motion:no-preference){.cue::after{animation:bob 1.8s ease-in-out infinite}}
+@keyframes bob{50%{transform:translateY(6px)}}
+
+.why h2{font-size:clamp(36px,6.4vw,96px);max-width:14ch}
+.why p{font-size:clamp(19px,2.4vw,26px);font-weight:600;max-width:30ch}
+
+.pr img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;z-index:-2;transform:scale(1.08)}
+.pr .grad{background:linear-gradient(115deg,rgba(7,15,43,.95) 10%,rgba(12,28,77,.72) 50%,rgba(181,18,47,.5));background-size:220% 220%}
+.pr .n{font:700 14px/1 var(--body);letter-spacing:.2em;color:#ffc2cc}
+.pr h3{font-size:clamp(36px,6.6vw,100px);max-width:14ch}
+.pr .short{font:700 clamp(20px,2.6vw,28px)/1.25 var(--body)}
+.pr .long{max-width:42ch;font-size:clamp(17px,1.9vw,20px);color:#e4e8f4}
+
+.ab{background:var(--paper);color:var(--navy)}
+.ab .lbl{color:var(--red)}
+.ab h2{font-size:clamp(34px,5vw,72px)}
+.ab .cols{display:grid;grid-template-columns:1fr 1fr;gap:28px 56px;max-width:1100px}
+.ab p{color:#2a3658;max-width:56ch}
+@media (max-width:759px){.ab .cols{grid-template-columns:1fr}}
+
+.dots{position:fixed;z-index:9;right:max(14px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px}
+.dots a{width:11px;height:11px;border-radius:50%;border:2px solid #fff;background:transparent;mix-blend-mode:difference;transition:background .25s,transform .25s}
+.dots a.on{background:#fff;transform:scale(1.25)}
+.dots a span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:520px){.dots{display:none}}
+.contact{scroll-snap-align:end}
+@media (max-width:640px){.x{font-stretch:100%}.hero h1{font-size:clamp(54px,16vw,96px)}.why h2{font-size:clamp(34px,9.4vw,64px)}.pr h3{font-size:clamp(30px,8.4vw,64px);max-width:none}nav.top a:not(.brand):not(:last-child){display:none}}
+.hero .name{font:900 clamp(26px,3.6vw,52px)/1 var(--disp);font-stretch:104%;text-transform:uppercase;letter-spacing:.02em;color:#ffd6dd}
+</style>
+</head>
+<body id="top">
+<div class="draftbar g"><span>Draft 2 of 5 · Gradient Scroll</span><a href="index.html">See all five drafts</a></div>
+
+<nav class="dots" aria-label="Sections">
+  <a href="#s-hero"><span>Top</span></a><a href="#s-why"><span>Why it matters</span></a><a href="#s-p1"><span>Stewardship</span></a><a href="#s-p2"><span>No Special Favors</span></a><a href="#s-p3"><span>Personal Responsibility</span></a><a href="#s-p4"><span>Free Markets</span></a><a href="#about"><span>About</span></a><a href="#contact"><span>Contact</span></a>
+</nav>
+
+<header class="scr hero g" id="s-hero">
+  <nav class="top g" aria-label="Main"><a class="brand logo" href="#top"><img src="img/pad-logo-360.png" alt="Patriot Animal Defense home" width="360" height="334"></a><a href="#about">About</a><a href="#s-p1">Principles</a><a href="#contact">Contact</a></nav>
+  <canvas data-flag="0.7" aria-hidden="true"></canvas><div class="grad" aria-hidden="true"></div>
+  <p class="name rv">Patriot Animal Defense</p>
+  <h1 class="x rv d1">Defense<br>Now</h1>
+  <p class="vision rv d2">A country where defending animals is a common-sense cause rooted in stewardship and personal responsibility, and where conservatives and libertarians are empowered to act on it from campus quads to state capitols.</p>
+  <div class="rv d3" style="display:flex;flex-wrap:wrap;gap:14px 30px;align-items:center"><a class="cue" href="#s-why">Learn why it matters</a><a href="#contact" style="font:700 15px/1 var(--body);text-decoration:none;border-bottom:2px solid #fff;padding-bottom:4px">Get involved</a></div>
+</header>
+
+<section class="scr why g" id="s-why" aria-labelledby="why"><div class="grad" aria-hidden="true"></div>
+  <p class="lbl rv">Why it matters</p>
+  <h2 class="x rv d1" id="why">Conservative values, applied</h2>
+  <p class="rv d2">Defending animals follows from values conservatives already hold.</p>
+</section>
+
+<section class="scr pr g" id="s-p1" aria-labelledby="p1"><img src="img/stewardship-chick.jpg" alt="Hands holding a baby chick" style="object-position:40% 42%"><div class="grad" aria-hidden="true"></div>
+  <h3 class="x rv d1" id="p1">Stewardship</h3>
+  <p class="short rv d2">Defending the creatures of the Earth.</p>
+  <p class="long rv d3">We are entrusted with the animals in our care. Defending them means refusing to inflict needless harm.</p>
+</section>
+<section class="scr pr g" id="s-p2" aria-labelledby="p2"><img src="img/special-favors-capitol.jpg" alt="A hand holding up glasses toward the road ahead" style="object-position:50% 40%"><div class="grad" aria-hidden="true"></div>
+  <h3 class="x rv d1" id="p2">No Special Favors</h3>
+  <p class="short rv d2">No industry gets a free pass.</p>
+  <p class="long rv d3">No industry should get bailouts or advantages that others don't. Taxpayers deserve transparency about where their money goes.</p>
+</section>
+<section class="scr pr g" id="s-p3" aria-labelledby="p3"><img src="img/responsibility-aggag.jpg" alt="A pig looking out from behind the bars of a crate" style="object-position:58% 45%"><div class="grad" aria-hidden="true"></div>
+  <h3 class="x rv d1" id="p3">Personal Responsibility</h3>
+  <p class="short rv d2">Your choices carry weight.</p>
+  <p class="long rv d3">Where your money goes shapes what gets built, and our choices as individuals add up. We believe in knowing what you're funding.</p>
+</section>
+<section class="scr pr g" id="s-p4" aria-labelledby="p4"><img src="img/free-markets.jpg" alt="A bald eagle beside the American flag and the Constitution" style="object-position:30% 40%"><div class="grad" aria-hidden="true"></div>
+  <h3 class="x rv d1" id="p4">Free Markets</h3>
+  <p class="short rv d2">No handouts, no bans.</p>
+  <p class="long rv d3">The government shouldn't prop up one industry while blocking its competitors. A rigged game is not fair competition.</p>
+</section>
+
+<section class="closer g"><div class="in"><span class="todo">To write: your explanation for each principle, one or two sentences each, with a source for any facts (Isaac)</span><span class="todo">To decide: include the "Risks to everyone" section (pandemic and food security arguments) here, or inside one of the principles (Isaac)</span><p class="closing rv"><a href="#contact">Join the conversation.</a></p></div></section>
+
+<section class="scr ab g" id="about" aria-labelledby="ab">
+  <p class="lbl rv">About us</p>
+  <h2 class="x rv d1" id="ab">Who we are</h2>
+  <div class="cols">
+    <div class="rv d2"><p>Patriot Animal Defense is building a strong conservative presence in the animal defense movement. We advocate for animals by opposing government policies that strip them of their natural-born freedoms to life, liberty, and the pursuit of happiness.</p>
+      <p style="margin-top:14px">Isaac DeBlasio, Executive Director, graduated from the University of Wisconsin-Madison in 2025, where he was active in Students For Liberty and served as President of Animal Advocacy UW. He is a published writer on animal policy, with work in The Hill and other outlets. He is driven by the belief that we are stewards of the animals in our care.</p></div>
+    <div class="rv d3"><p>We take the conversation about animal policy directly to conservatives. We travel to college campuses to discuss the national security issues tied to animal policy, building connections with students along the way. At conservative conferences, we bring animal policy to the forefront of the conservative movement.</p>
+      <span class="todo">To write: one line about the fellowship (Isaac)</span></div>
+  </div>
+</section>
+
+<footer class="contact g" id="contact">
+  <div class="row">
+    <div class="cl"><img class="flogo" src="img/pad-logo-360.png" alt="" width="360" height="334"><div><h2>Join the defense movement.</h2><p>Interested in organizing on your campus? Reach out.</p></div></div>
+    <div><p class="mail"><span>Email</span>Address to come</p><span class="todo">To decide: contact form, email address, or both (Isaac)</span></div>
+  </div>
+  <div class="fine"><span>&copy; 2026 Patriot Animal Defense</span><a href="#top">Back to top</a></div>
+</footer>
+<script src="pad.js"></script>
+<script>
+(function(){var dots=[].slice.call(document.querySelectorAll('.dots a'));
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){dots.forEach(function(d){d.classList.toggle('on',d.getAttribute('href')==='#'+e.target.id)})}})},{threshold:.5});
+ dots.forEach(function(d){var t=document.querySelector(d.getAttribute('href'));if(t)io.observe(t)});})();
+</script>
+</body>
+</html>

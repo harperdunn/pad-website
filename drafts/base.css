@@ -1,0 +1,48 @@
+/* Shared by all five drafts: reset, gutters, reveals, draft bar, to-write markers, contact. */
+*,*::before,*::after{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;overflow-x:clip}
+img,video,canvas{max-width:100%;display:block}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid #ffc845;outline-offset:3px}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:balance}
+.g{padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+@media (min-width:760px){.g{padding-left:max(48px,env(safe-area-inset-left,0px));padding-right:max(48px,env(safe-area-inset-right,0px))}}
+canvas[data-flag]{position:absolute;inset:0;width:100%;height:100%;max-width:none;z-index:-2}
+
+/* reveal on scroll (only when motion is allowed and JS ran) */
+.mo .rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.mo .rv.d1{transition-delay:.1s}.mo .rv.d2{transition-delay:.2s}.mo .rv.d3{transition-delay:.3s}
+.mo .rv.shown{opacity:1;transform:none}
+
+/* thin bar that says which draft this is */
+.draftbar{position:fixed;z-index:50;left:max(12px,env(safe-area-inset-left,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));display:flex;gap:10px;align-items:center;padding:8px 12px!important;border-radius:999px;background:rgba(255,200,69,.95);color:#16130a;font:600 12px/1.2 system-ui,sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.draftbar a{font-weight:700;color:#16130a}
+
+/* text Isaac still has to write */
+.todo{display:block;margin-top:14px;padding:8px 12px;border:1px dashed currentColor;opacity:.6;font:500 13px/1.4 system-ui,sans-serif;max-width:52ch}
+
+/* contact: small, black, at the very bottom (Isaac's pick) */
+.contact{background:#000;color:#f2f2f2;padding-block:44px 28px;font:400 15px/1.55 system-ui,sans-serif}
+.contact .row{display:flex;flex-wrap:wrap;gap:18px 48px;align-items:flex-end;justify-content:space-between;max-width:1200px;margin-inline:auto}
+.contact h2{font-size:22px;letter-spacing:.01em;margin-bottom:6px}
+.contact p{color:#b9b9b9}
+.contact .mail{font-weight:600;color:#fff;font-size:16px}
+.contact .mail span{display:block;font-weight:400;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8d8d8d;margin-bottom:2px}
+.contact .fine{max-width:1200px;margin:32px auto 0;padding-top:16px;border-top:1px solid #222;display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;font-size:12px;color:#7a7a7a}
+
+/* Isaac's logo (Oct 28). Its navy lettering needs a light disc behind it on dark backgrounds. */
+.brand.logo{display:flex;align-items:center;gap:12px;line-height:0}
+.brand.logo img{height:64px;width:auto;background:#fff;border-radius:50%;padding:3px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+@media (max-width:640px){.brand.logo img{height:50px}}
+.contact .cl{display:flex;align-items:center;gap:18px}
+.contact .flogo{height:72px;width:auto;background:#fff;border-radius:50%;padding:3px;flex:none}
+
+/* closing line from Isaac's doc, plus his remaining to-write items */
+.closer{padding-block:56px;text-align:center}
+.closer .in{max-width:760px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:10px}
+.closer .todo{margin-top:0}
+.closing{margin-top:18px;font:800 clamp(26px,4vw,40px)/1.1 system-ui,sans-serif}
+.closing a{text-decoration:none;border-bottom:3px solid currentColor;padding-bottom:4px}

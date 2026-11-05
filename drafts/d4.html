@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PAD Draft 4: Night Rally</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&display=swap">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Layout: an evening rally stage (#23). Searchlights over the flag, a starry "Conservative values, applied" section, and principles that light up as they reach center stage. */
+:root{--stage:#000;--haze:#081236;--navy:#0b1f5c;--beam:180,200,255;--red:#ff2e4d;--gold:#ffd27a;--soft:#c5cbe0;
+ --disp:"League Spartan","Arial Black",sans-serif;--body:"DM Sans",system-ui,sans-serif;color-scheme:dark}
+body{background:var(--stage);color:#fff;font:400 17px/1.6 var(--body)}
+.x{font-family:var(--disp);font-weight:900;text-transform:uppercase;line-height:.9;letter-spacing:-.005em}
+.lbl{font:700 12px/1 var(--body);letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+
+nav.top{position:absolute;z-index:5;inset:0 0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:6px 24px;padding-block:20px}
+nav.top .brand{margin-right:auto;font:900 26px/1 var(--disp);letter-spacing:.06em;text-decoration:none}
+nav.top a:not(.brand){font:700 13px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:8px 12px;border:2px solid transparent}
+nav.top a:last-child{border-color:#fff}
+
+.hero{position:relative;isolation:isolate;overflow:hidden;min-height:680px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:20px;padding-block:130px 120px}
+.hero canvas{opacity:.75}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 60% 55% at 50% 42%,rgba(8,18,54,.25),rgba(0,0,0,.92) 78%)}
+@media (prefers-reduced-motion:no-preference){.hero canvas{animation:house 2.2s ease-out both}@keyframes house{from{opacity:0}}}
+.beam{position:absolute;bottom:-10%;width:60vmax;height:120vmax;z-index:-1;pointer-events:none;transform-origin:50% 100%;
+ background:conic-gradient(from -8deg at 50% 100%,transparent 0deg,rgba(var(--beam),.20) 4deg,rgba(var(--beam),.05) 8deg,transparent 16deg);mix-blend-mode:screen}
+.beam.l{left:-12%;transform:rotate(18deg)}.beam.r{right:-12%;transform:rotate(-18deg)}
+@media (prefers-reduced-motion:no-preference){.beam.l{animation:swL 9s ease-in-out infinite alternate}.beam.r{animation:swR 11s ease-in-out infinite alternate}
+ @keyframes swL{to{transform:rotate(-6deg)}}@keyframes swR{to{transform:rotate(8deg)}}}
+.hero h1{font-size:clamp(50px,8.4vw,120px);text-shadow:0 0 28px rgba(58,92,255,.5)}
+.hero .refl{font-size:clamp(50px,8.4vw,120px);transform:scaleY(-1);margin-top:-.42em;opacity:.18;filter:blur(1.5px);-webkit-mask-image:linear-gradient(0deg,#000,transparent 65%);mask-image:linear-gradient(0deg,#000,transparent 65%);pointer-events:none;user-select:none}
+.hero .vision{max-width:46ch;font-size:clamp(17px,2vw,20px);color:#dde2f2;margin-top:-.2em}
+.acts{display:flex;flex-wrap:wrap;gap:14px 28px;justify-content:center;align-items:center}
+.btn{display:inline-block;background:var(--red);color:#fff;text-decoration:none;font:900 15px/1 var(--disp);letter-spacing:.12em;text-transform:uppercase;padding:16px 24px;border-radius:999px;box-shadow:0 0 30px rgba(255,46,77,.45)}
+.tl{font:700 15px/1 var(--body);text-decoration:none;border-bottom:2px solid var(--gold);padding-bottom:4px}
+.foot{position:absolute;left:0;right:0;bottom:22px;display:flex;justify-content:center;gap:clamp(18px,4vw,46px)}
+.foot i{width:12px;height:12px;border-radius:50%;background:#2b2b2b}
+.mo .foot i{animation:bulb .4s ease-out both}
+.foot i{background:var(--gold);box-shadow:0 0 18px 4px rgba(255,210,122,.55)}
+@keyframes bulb{from{background:#2b2b2b;box-shadow:none}}
+
+.why{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse 70% 80% at 50% 50%,var(--haze),#000 80%);padding-block:clamp(100px,13vw,170px);text-align:center}
+.why canvas.sky{position:absolute;inset:0;width:100%;height:100%;max-width:none;z-index:-1}
+.why .lbl{margin-bottom:22px}
+.why h2{font-size:clamp(36px,6.2vw,88px);text-shadow:0 0 24px rgba(58,92,255,.45)}
+.why p{margin:24px auto 0;max-width:32ch;font:600 clamp(19px,2.3vw,25px)/1.4 var(--body);color:#e8ebf7}
+.why .stars5{margin:30px auto 0;display:flex;justify-content:center;gap:16px;color:var(--gold);font-size:22px;letter-spacing:0}
+
+.pr{background:var(--navy);padding-block:clamp(80px,10vw,120px)}
+.pr>.lbl{text-align:center;margin-bottom:40px}
+.pr ol{list-style:none;margin:0 auto;padding:0;max-width:1100px;display:flex;flex-direction:column;gap:18px}
+.pr li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:stretch;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08);transition:background .5s,box-shadow .5s,opacity .5s,filter .5s}
+.mo .pr li{opacity:.45;filter:saturate(.3)}
+.mo .pr li.lit,.pr li:hover{opacity:1;filter:none;background:rgba(255,255,255,.06);box-shadow:0 0 60px rgba(120,150,255,.25)}
+.pr .ph{position:relative;min-height:240px;overflow:hidden}
+.pr .ph img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover}
+.pr .t{padding:clamp(24px,4vw,44px);display:flex;flex-direction:column;justify-content:center;gap:10px}
+.pr h3{font-size:clamp(30px,4vw,52px)}
+.pr .short{font:700 19px/1.3 var(--body);color:var(--gold)}
+.pr .long{color:var(--soft);max-width:44ch}
+
+.ab{background:#000;padding-block:clamp(80px,10vw,120px)}
+.ab .in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:28px 64px}
+.ab h2{font-size:clamp(40px,6vw,80px);grid-column:1/-1}
+.ab p{color:var(--soft);max-width:56ch}.ab p+p{margin-top:14px}
+@media (max-width:759px){.pr li,.ab .in{grid-template-columns:1fr}nav.top a:not(.brand):not(:last-child){display:none}}
+.hero .name{font:900 clamp(26px,3.6vw,50px)/1 var(--disp);text-transform:uppercase;letter-spacing:.04em;color:var(--gold)}
+</style>
+</head>
+<body id="top">
+<div class="draftbar g"><span>Draft 4 of 5 · Night Rally</span><a href="index.html">See all five drafts</a></div>
+
+<header class="hero g">
+  <canvas data-flag="0.7" aria-hidden="true"></canvas>
+  <div class="beam l" aria-hidden="true"></div><div class="beam r" aria-hidden="true"></div>
+  <nav class="top g" aria-label="Main"><a class="brand logo" href="#top"><img src="img/pad-logo-360.png" alt="Patriot Animal Defense home" width="360" height="334"></a><a href="#about">About</a><a href="#principles">Principles</a><a href="#contact">Contact</a></nav>
+  <p class="name rv">Patriot Animal Defense</p>
+  <div><h1 class="x rv d1">Defense Now</h1><div class="x refl" aria-hidden="true">Defense Now</div></div>
+  <p class="vision rv d2">A country where defending animals is a common-sense cause rooted in stewardship and personal responsibility, and where conservatives and libertarians are empowered to act on it from campus quads to state capitols.</p>
+  <div class="acts rv d3"><a class="btn" href="#principles">Learn why it matters</a><a class="tl" href="#contact">Get involved</a></div>
+  <div class="foot" aria-hidden="true"><i style="animation-delay:.9s"></i><i style="animation-delay:1s"></i><i style="animation-delay:1.1s"></i><i style="animation-delay:1.2s"></i><i style="animation-delay:1.3s"></i><i style="animation-delay:1.4s"></i><i style="animation-delay:1.5s"></i></div>
+</header>
+
+<section class="why g" aria-labelledby="why">
+  <canvas class="sky" aria-hidden="true"></canvas>
+  <p class="lbl rv">Why it matters</p>
+  <h2 class="x rv d1" id="why">Conservative values, applied</h2>
+  <p class="rv d2">Defending animals follows from values conservatives already hold.</p>
+  <div class="stars5 rv d3" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;</div>
+</section>
+
+<section class="pr g" id="principles" aria-labelledby="prl">
+  <p class="lbl" id="prl">Our principles</p>
+  <ol>
+    <li><div class="ph"><img src="img/stewardship-chick.jpg" alt="Hands holding a baby chick" style="object-position:40% 42%"></div><div class="t"><h3 class="x">Stewardship</h3><p class="short">Defending the creatures of the Earth.</p><p class="long">We are entrusted with the animals in our care. Defending them means refusing to inflict needless harm.</p></div></li>
+    <li><div class="ph"><img src="img/special-favors-capitol.jpg" alt="A hand holding up glasses toward the road ahead" style="object-position:50% 40%"></div><div class="t"><h3 class="x">No Special Favors</h3><p class="short">No industry gets a free pass.</p><p class="long">No industry should get bailouts or advantages that others don't. Taxpayers deserve transparency about where their money goes.</p></div></li>
+    <li><div class="ph"><img src="img/responsibility-aggag.jpg" alt="A pig looking out from behind the bars of a crate" style="object-position:58% 45%"></div><div class="t"><h3 class="x">Personal Responsibility</h3><p class="short">Your choices carry weight.</p><p class="long">Where your money goes shapes what gets built, and our choices as individuals add up. We believe in knowing what you're funding.</p></div></li>
+    <li><div class="ph"><img src="img/free-markets.jpg" alt="A bald eagle beside the American flag and the Constitution" style="object-position:30% 40%"></div><div class="t"><h3 class="x">Free Markets</h3><p class="short">No handouts, no bans.</p><p class="long">The government shouldn't prop up one industry while blocking its competitors. A rigged game is not fair competition.</p></div></li>
+  </ol>
+</section>
+
+<section class="closer g"><div class="in"><span class="todo">To write: your explanation for each principle, one or two sentences each, with a source for any facts (Isaac)</span><span class="todo">To decide: include the "Risks to everyone" section (pandemic and food security arguments) here, or inside one of the principles (Isaac)</span><p class="closing rv"><a href="#contact">Join the conversation.</a></p></div></section>
+
+<section class="ab g" id="about" aria-labelledby="ab">
+  <div class="in">
+    <h2 class="x rv" id="ab">Who we are</h2>
+    <div class="rv"><p>Patriot Animal Defense is building a strong conservative presence in the animal defense movement. We advocate for animals by opposing government policies that strip them of their natural-born freedoms to life, liberty, and the pursuit of happiness.</p>
+      <p>Isaac DeBlasio, Executive Director, graduated from the University of Wisconsin-Madison in 2025, where he was active in Students For Liberty and served as President of Animal Advocacy UW. He is a published writer on animal policy, with work in The Hill and other outlets. He is driven by the belief that we are stewards of the animals in our care.</p></div>
+    <div class="rv d1"><p>We take the conversation about animal policy directly to conservatives. We travel to college campuses to discuss the national security issues tied to animal policy, building connections with students along the way. At conservative conferences, we bring animal policy to the forefront of the conservative movement.</p>
+      <span class="todo">To write: one line about the fellowship (Isaac)</span></div>
+  </div>
+</section>
+
+<footer class="contact g" id="contact">
+  <div class="row">
+    <div class="cl"><img class="flogo" src="img/pad-logo-360.png" alt="" width="360" height="334"><div><h2>Join the defense movement.</h2><p>Interested in organizing on your campus? Reach out.</p></div></div>
+    <div><p class="mail"><span>Email</span>Address to come</p><span class="todo">To decide: contact form, email address, or both (Isaac)</span></div>
+  </div>
+  <div class="fine"><span>&copy; 2026 Patriot Animal Defense</span><a href="#top">Back to top</a></div>
+</footer>
+<script src="pad.js"></script>
+<script>
+(function(){
+ var RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ /* center-stage lighting for principles */
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('lit',e.isIntersecting)})},{rootMargin:'-35% 0px -35% 0px'});
+ document.querySelectorAll('.pr li').forEach(function(li){io.observe(li)});
+ /* twinkling star field behind "Conservative values, applied" */
+ var cv=document.querySelector('canvas.sky'),g=cv.getContext('2d'),S=[],vis=false,run=false;
+ function size(){cv.width=cv.clientWidth;cv.height=cv.clientHeight;S=[];var n=Math.round(cv.width*cv.height/5200);
+  for(var i=0;i<n;i++)S.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.4+.3,p:Math.random()*6.3,s:Math.random()*1.5+.5})}
+ function draw(t){g.clearRect(0,0,cv.width,cv.height);S.forEach(function(s){var a=RM?.7:.35+.65*Math.abs(Math.sin(s.p+t*.001*s.s));g.globalAlpha=a;g.fillStyle='#fff';g.beginPath();g.arc(s.x,s.y,s.r,0,6.3);g.fill()})}
+ function loop(t){if(!vis){run=false;return}draw(t);requestAnimationFrame(loop)}
+ new IntersectionObserver(function(e){vis=e[0].isIntersecting;if(vis&&!RM&&!run){run=true;requestAnimationFrame(loop)}else draw(0)}).observe(cv);
+ size();draw(0);addEventListener('resize',function(){size();draw(0)});
+})();
+</script>
+</body>
+</html>

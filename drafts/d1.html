@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PAD Draft 1: Spotlight Wall</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Public+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="base.css">
+<style>
+/* Layout: centered spotlight hero over the flag (#15), then each principle as a full-bleed photo (#9), black contact. */
+:root{--ink:#06080f;--navy:#0b1d4a;--wash:11,29,74;--red:#c8102e;--snow:#f4f5f8;--muted:#c3cadb;
+ --disp:"Archivo","Arial Narrow",sans-serif;--body:"Public Sans",system-ui,sans-serif;color-scheme:dark}
+body{background:var(--ink);color:#fff;font:400 17px/1.6 var(--body)}
+.x{font-family:var(--disp);font-weight:900;font-stretch:100%;text-transform:uppercase;line-height:.92;letter-spacing:-.005em}
+.lbl{font:700 12px/1 var(--body);letter-spacing:.28em;text-transform:uppercase}
+
+nav.top{position:absolute;z-index:5;inset:0 0 auto 0;display:flex;flex-wrap:wrap;align-items:center;gap:6px 26px;padding-block:20px}
+nav.top .brand{margin-right:auto;font:900 22px/1 var(--disp);font-stretch:125%;letter-spacing:.08em;text-decoration:none}
+nav.top a:not(.brand){font:600 13px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:8px 0;border-bottom:2px solid transparent}
+nav.top a:not(.brand):hover{border-color:#fff}
+
+.hero{position:relative;isolation:isolate;overflow:hidden;min-height:640px;display:grid;place-items:center;text-align:center;padding-block:120px 90px}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+ background:radial-gradient(ellipse 46% 52% at 50% 46%,rgba(var(--wash),.42),rgba(var(--wash),.82) 60%,rgba(4,6,14,.97) 100%)}
+.hero .in{display:flex;flex-direction:column;align-items:center;gap:22px;max-width:980px}
+.hero .lbl{color:#ffb3bf}
+.hero h1{font-size:clamp(52px,8.5vw,124px);text-shadow:0 6px 40px rgba(0,0,0,.45)}
+.hero p.vision{max-width:46ch;font-size:clamp(17px,2vw,20px);color:#e6eaf4}
+.acts{display:flex;flex-wrap:wrap;gap:14px 28px;justify-content:center;align-items:center;margin-top:6px}
+.btn{display:inline-block;background:var(--red);color:#fff;text-decoration:none;font:800 14px/1 var(--disp);font-stretch:115%;letter-spacing:.14em;text-transform:uppercase;padding:16px 24px;transition:background .2s}
+.btn:hover{background:#e01b3a}
+.tl{font:600 15px/1 var(--body);text-decoration:none;border-bottom:2px solid rgba(255,255,255,.5);padding-bottom:4px}
+.tl:hover{border-color:#fff}
+
+.why{background:var(--snow);color:var(--navy);padding-block:clamp(72px,10vw,128px);text-align:center}
+.why .lbl{color:var(--red);margin-bottom:20px}
+.why h2{font-size:clamp(34px,5.6vw,76px)}
+.why p{margin:22px auto 0;max-width:34ch;font-size:clamp(18px,2.2vw,23px);font-weight:600;line-height:1.4}
+
+.wall{list-style:none;margin:0;padding:0}
+.shot{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(440px,52vw,600px);display:flex;flex-direction:column;justify-content:flex-end;padding-block:56px;border-top:2px solid var(--ink)}
+.shot img{position:absolute;inset:-6% 0;width:100%;height:112%;max-width:none;object-fit:cover;z-index:-2}
+.shot::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(var(--wash),.95),rgba(var(--wash),.72) 55%,rgba(var(--wash),.4))}
+.shot.rt{align-items:flex-end;text-align:right}
+.shot.rt::before{background:linear-gradient(270deg,rgba(var(--wash),.95),rgba(var(--wash),.72) 55%,rgba(var(--wash),.4))}
+.shot .lbl{color:#ffb3bf;margin-bottom:14px}
+.shot h3{font-size:clamp(34px,6.4vw,84px)}
+.shot p{margin-top:16px;max-width:40ch;font-size:clamp(17px,1.9vw,20px);color:#e4e9f5}
+
+.about{background:var(--ink);padding-block:clamp(72px,9vw,120px)}
+.about .grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px 64px}
+.about .lbl{color:#ffb3bf;margin-bottom:18px;grid-column:1/-1}
+.about h2{font-size:clamp(34px,5vw,60px);margin-bottom:18px}
+.about p{color:var(--muted);max-width:56ch}
+.about p+p{margin-top:14px}
+.about h4{margin:0 0 8px;font:700 13px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:#fff}
+.about .col+.col{border-top:1px solid #222a3d;padding-top:28px}
+@media (min-width:760px){.about .col+.col{border-top:0;padding-top:0;border-left:1px solid #222a3d;padding-left:48px}}
+@media (max-width:640px){.x{font-stretch:100%}.hero h1{font-size:clamp(52px,15vw,90px)}.why h2{font-size:clamp(32px,9vw,60px)}.shot h3{font-size:clamp(30px,8.6vw,60px)}}
+@media (max-width:759px){.about .grid{grid-template-columns:1fr}.shot.rt{align-items:flex-start;text-align:left}.shot::before,.shot.rt::before{background:rgba(var(--wash),.72)}nav.top a:not(.brand):not(:last-child){display:none}}
+.hero .name{font:900 clamp(26px,3.6vw,50px)/1 var(--disp);font-stretch:110%;text-transform:uppercase;letter-spacing:.03em;color:#fff}
+</style>
+</head>
+<body id="top">
+<div class="draftbar g"><span>Draft 1 of 5 · Spotlight Wall</span><a href="index.html">See all five drafts</a></div>
+
+<header class="hero g">
+  <nav class="top g" aria-label="Main"><a class="brand logo" href="#top"><img src="img/pad-logo-360.png" alt="Patriot Animal Defense home" width="360" height="334"></a><a href="#about">About</a><a href="#principles">Principles</a><a href="#contact">Contact</a></nav>
+  <canvas data-flag="0.8" aria-hidden="true"></canvas>
+  <div class="in">
+    <p class="name rv">Patriot Animal Defense</p>
+    <h1 class="x rv d1">Defense Now</h1>
+    <p class="vision rv d2">A country where defending animals is a common-sense cause rooted in stewardship and personal responsibility, and where conservatives and libertarians are empowered to act on it from campus quads to state capitols.</p>
+    <div class="acts rv d3"><a class="btn" href="#principles">Learn why it matters</a><a class="tl" href="#contact">Get involved</a></div>
+  </div>
+</header>
+
+<section class="why g" aria-labelledby="why">
+  <p class="lbl rv">Why it matters</p>
+  <h2 class="x rv d1" id="why">Conservative values, applied</h2>
+  <p class="rv d2">Defending animals follows from values conservatives already hold.</p>
+</section>
+
+<ul class="wall" id="principles" aria-label="Our principles">
+  <li class="shot g"><img data-speed="0.08" src="img/stewardship-chick.jpg" alt="Hands holding a baby chick" style="object-position:40% 42%">
+    <p class="lbl rv">Defending the creatures of the Earth</p><h3 class="x rv d1">Stewardship</h3>
+    <p class="rv d2">We are entrusted with the animals in our care. Defending them means refusing to inflict needless harm.</p></li>
+  <li class="shot rt g"><img data-speed="0.08" src="img/special-favors-capitol.jpg" alt="A hand holding up glasses toward the road ahead" style="object-position:50% 40%">
+    <p class="lbl rv">No industry gets a free pass</p><h3 class="x rv d1">No Special Favors</h3>
+    <p class="rv d2">No industry should get bailouts or advantages that others don't. Taxpayers deserve transparency about where their money goes.</p></li>
+  <li class="shot g"><img data-speed="0.08" src="img/responsibility-aggag.jpg" alt="A pig looking out from behind the bars of a crate" style="object-position:58% 45%">
+    <p class="lbl rv">Your choices carry weight</p><h3 class="x rv d1">Personal Responsibility</h3>
+    <p class="rv d2">Where your money goes shapes what gets built, and our choices as individuals add up. We believe in knowing what you're funding.</p></li>
+  <li class="shot rt g"><img data-speed="0.08" src="img/free-markets.jpg" alt="A bald eagle beside the American flag and the Constitution" style="object-position:30% 40%">
+    <p class="lbl rv">No handouts, no bans</p><h3 class="x rv d1">Free Markets</h3>
+    <p class="rv d2">The government shouldn't prop up one industry while blocking its competitors. A rigged game is not fair competition.</p></li>
+</ul>
+
+<section class="closer g"><div class="in"><span class="todo">To write: your explanation for each principle, one or two sentences each, with a source for any facts (Isaac)</span><span class="todo">To decide: include the "Risks to everyone" section (pandemic and food security arguments) here, or inside one of the principles (Isaac)</span><p class="closing rv"><a href="#contact">Join the conversation.</a></p></div></section>
+
+<section class="about g" id="about" aria-labelledby="ab">
+  <div class="grid">
+    <h2 class="x" id="ab" style="grid-column:1/-1;margin-bottom:0">About us</h2>
+    <div class="col rv">
+      <h4>Who we are</h4>
+      <p>Patriot Animal Defense is building a strong conservative presence in the animal defense movement. We advocate for animals by opposing government policies that strip them of their natural-born freedoms to life, liberty, and the pursuit of happiness.</p>
+      <p>Isaac DeBlasio, Executive Director, graduated from the University of Wisconsin-Madison in 2025, where he was active in Students For Liberty and served as President of Animal Advocacy UW. He is a published writer on animal policy, with work in The Hill and other outlets. He is driven by the belief that we are stewards of the animals in our care.</p>
+    </div>
+    <div class="col rv d1">
+      <h4>What we do</h4>
+      <p>We take the conversation about animal policy directly to conservatives. We travel to college campuses to discuss the national security issues tied to animal policy, building connections with students along the way. At conservative conferences, we bring animal policy to the forefront of the conservative movement.</p>
+      <span class="todo">To write: one line about the fellowship (Isaac)</span>
+    </div>
+  </div>
+</section>
+
+<footer class="contact g" id="contact">
+  <div class="row">
+    <div class="cl"><img class="flogo" src="img/pad-logo-360.png" alt="" width="360" height="334"><div><h2>Join the defense movement.</h2><p>Interested in organizing on your campus? Reach out.</p></div></div>
+    <div><p class="mail"><span>Email</span>Address to come</p><span class="todo">To decide: contact form, email address, or both (Isaac)</span></div>
+  </div>
+  <div class="fine"><span>&copy; 2026 Patriot Animal Defense</span><a href="#top">Back to top</a></div>
+</footer>
+<script src="pad.js"></script>
+</body>
+</html>
